@@ -6,24 +6,51 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
+
+    public function userProfile(Request $request) {
+        $user = Auth::user();
+
+        if(!$user){
+            return response()->json(['error' => 'Utilizator neautentificat'], 401);
+        }
+
+        return response()->json([
+            'user' => $user
+        ]);
+    }
+
+
+
     //intregistrare
-    public function register(Request $request){
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        return response() -> json(['message' => 'User created successfuly'], 201);
+    public function register(Request $request)
+    {
+        return DB::transaction(function () use ($request) {
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|min:6|confirmed',
+            ]);
+    
+            Log::info('🔍 REGISTER ATTEMPT', ['data' => $validatedData]);
+    
+            $user = User::create([
+                'name' => $validatedData['name'],
+                'email' => $validatedData['email'],
+                'password' => Hash::make($validatedData['password']),
+            ]);
+    
+            Log::info('✅ REGISTER SUCCESS', ['user' => $user]);
+    
+            return response()->json([
+                'message' => 'Utilizator creat cu succes!',
+                'user' => $user
+            ], 201);
+        });
     }
 
 
@@ -49,7 +76,7 @@ class AuthController extends Controller
             return response()->json([
                 'token' => $token,
                 'user' => $user
-            ], 200);
+            ], 201);
         }
     
         return response()->json(['error' => 'Unauthorized'], 401);
