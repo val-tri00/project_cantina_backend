@@ -1,0 +1,129 @@
+categorie,nume,calorii,pret
+Supe si ciorbe,Ciorba burta,139,9
+Supe si ciorbe,Ciorba de cartofi,180,11
+Supe si ciorbe,Ciorba de salata,292,21
+Supe si ciorbe,Ciorba de varza,238,27
+Supe si ciorbe,Ciorba radauteana,201,23
+Supe si ciorbe,Ciorba de legume,249,14
+Supe si ciorbe,Ciorba de periosoare,279,10
+Supe si ciorbe,Ciorba de cartofi cu afumatura,288,14
+Supe si ciorbe,Ciorba de fasole boabe,124,19
+Supe si ciorbe,Ciorba de fasole cu afumatura,297,27
+Supe si ciorbe,Ciorba ardeleneasca cu pui,247,24
+Supe si ciorbe,Ciorba ardeleneasca porc,204,10
+Supe si ciorbe,Ciorba vacuta,157,13
+Supe si ciorbe,Ciorba varza,281,18
+Supe si ciorbe,Supa crema de legume,113,24
+Supe si ciorbe,Supa crema de linte,226,20
+Supe si ciorbe,Supa crema cartofi dulci,230,26
+Supe si ciorbe,Supa de pui cu galuste,123,13
+Supe si ciorbe,Supa de taitei cu carne de pui,152,22
+Feluri principale,Escalop cu ciuperci,192,13
+Feluri principale,Piept de pui la gratar,157,15
+Feluri principale,Pizza,188,11
+Feluri principale,Chiftele porc,179,10
+Feluri principale,Ciolan porc,221,24
+Feluri principale,Camelone,298,24
+Feluri principale,Caneloni,155,24
+Feluri principale,Carnati de porc la cuptor,263,17
+Feluri principale,Sarmale cu carne de porc,175,17
+Feluri principale,Sarmale de post,154,9
+Feluri principale,Scarita de porc la cuptor,291,23
+Feluri principale,Tochitura de porc,152,11
+Feluri principale,Aripioare crispy,164,22
+Feluri principale,Cordon bleu,242,22
+Feluri principale,Cordon bleu mini,213,9
+Feluri principale,Cotlet la gratar,162,25
+Feluri principale,Creier porc pane,166,9
+Feluri principale,Lasagna,237,15
+Feluri principale,Legume mexicane,176,20
+Feluri principale,Mamaliguta cu smantana si cascaval,208,14
+Feluri principale,Mamaliguta,191,23
+Feluri principale,Musaca de cartofi,218,27
+Feluri principale,Muschiulet de porc cu sos brun,164,20
+Feluri principale,Pulpe de pui la cuptor,185,12
+Feluri principale,Pulpe dezosate,270,20
+Feluri principale,Pulpe umplute cu ciuperci,227,13
+Feluri principale,Friptura din ceafa,157,16
+Feluri principale,Friptura din porc,157,19
+Feluri principale,Ficat pui,154,24
+Feluri principale,Crispy congelat,300,12
+Feluri principale,Crispy din piept de pui,218,21
+Feluri principale,Medalion sarbesc,196,14
+Feluri principale,Rulou brasovean,299,22
+Feluri principale,Snitel piept pui,222,17
+Feluri principale,Snitel pui,209,10
+Feluri principale,Soia snitel,180,26
+Feluri principale,Somon file,173,15
+Feluri principale,Papricas din piept de pui,205,19
+Feluri principale,Muschiulet de porc cu tava,244,28
+Feluri principale,Ochiuri,180,20
+Feluri principale,Gulas,178,20
+Feluri principale,Iahnie de fasole,208,16
+Feluri principale,Tocanita de vacuta,253,20
+Feluri principale,Tocanita porc,291,21
+Feluri principale,Cascaval pane,273,25
+Feluri principale,Dovlecel pane,184,17
+Feluri principale,Tigaie picanta piept de pui,183,20
+Feluri principale,Tigaie picanta vita,157,10
+Feluri principale,Paste bolognese,216,28
+Feluri principale,Paste carbonara,228,15
+Feluri principale,Pastrav la cuptor,280,11
+Feluri principale,Ciulama ciuperci cu smantana,291,10
+Feluri principale,Ciuperci sote,183,15
+Feluri principale,Ghiveci cu legume,165,18
+Feluri principale,Ceafa la cuptor,168,27
+Feluri principale,Ceafa la gratar,163,11
+Garnituri,Piure de cartofi,111,27
+Garnituri,Cartofi aurii cu rozmarin,91,15
+Garnituri,Varza a la Cluj,101,24
+Garnituri,Varza calita,92,19
+Garnituri,Ardei umplut cu sos,149,12
+Garnituri,Cartofi frantuzesti,112,19
+Garnituri,Mazare sote,93,21
+Garnituri,Orez cu legume,103,25
+Garnituri,Cartofi pai,125,22
+Garnituri,Cartofi natur,134,26
+Garnituri,Cartofi taranesti,151,25
+Garnituri,Mix legume,115,16
+Garnituri,Morcovi baby,125,24
+Garnituri,Spanac calit,134,20
+Garnituri,Brocoli congelat,133,15
+Garnituri,Conopida gratinate,116,28
+Garnituri,Tocanita de cartofi,101,17
+Salate,Salata orientala,66,10
+Salate,Salata sfecla rosie,60,24
+Salate,Salata varza,62,20
+Salate,Salata file,24,17
+Salate,Salata castraveti si rosii,33,28
+Salate,Salata cruditati,34,26
+Salate,Salata cu piept de pui,74,12
+Salate,Salata ardei copti,42,12
+Salate,Salata bulgareasca,33,13
+Salate,Salata castraveti murati,94,9
+Salate,Salata de ceapa rosie,44,16
+Salate,Salata rosii si castraveti,24,16
+Salate,Salata de varza si rosii,73,17
+Salate,Salata muraturi asortate,96,10
+Salate,Fasole batute,86,26
+Salate,Fasole verde scazuta,100,26
+Salate,Cartofi pai congelat,39,16
+Deserturi,Budinca paste,346,14
+Deserturi,Ecler,319,30
+Deserturi,Tiramisu,276,23
+Deserturi,Prajitura fanta,342,15
+Deserturi,Amandina,262,25
+Deserturi,Clatite cu fineti,271,23
+Deserturi,Clatite cu gem,266,8
+Deserturi,Clatite cu branza dulce si stafide,316,11
+Deserturi,Papanasi cu fineti,312,15
+Deserturi,Papanasi cu gem,255,29
+Deserturi,Cuib de viespi,234,12
+Deserturi,Prajitura cu branza dulce si stafide,343,8
+Deserturi,Prajitura cu mar,238,12
+Deserturi,Strudel de mar,347,14
+Produse de panificatie,Chifla traditionala,285,15
+Bauturi,cafea espresso,0,26
+Sosuri,Smantana,173,29
+Sosuri,Sos de usturoi,148,13
+Sosuri,Sos de usturoi cu lamaie,190,12

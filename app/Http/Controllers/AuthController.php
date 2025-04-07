@@ -42,13 +42,17 @@ class AuthController extends Controller
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
                 'password' => Hash::make($validatedData['password']),
+                'role' => 'user',
             ]);
     
             Log::info('✅ REGISTER SUCCESS', ['user' => $user]);
+
+            $token = $user->createToken('authToken')->plainTextToken;
     
             return response()->json([
                 'message' => 'Utilizator creat cu succes!',
-                'user' => $user
+                'user' => $user,
+                'token' => $token,
             ], 201);
         });
     }
@@ -75,7 +79,12 @@ class AuthController extends Controller
     
             return response()->json([
                 'token' => $token,
-                'user' => $user
+                'user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'role' => $user->role,
+                ]
             ], 201);
         }
     

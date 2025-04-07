@@ -15,43 +15,35 @@ class MenuSeeder extends Seeder
      */
     public function run(): void
     {
-        $meniu = [
-            'Supe si ciorbe' => [
-                'Ciorba burta', 'Ciorba de cartofi', 'Ciorba de salata'
-            ],
-            'Feluri principale' => [
-                'Pizza', 'Chiftele porc', 'Escalop cu ciuperci'
-            ],
-            'Garnituri' => [
-                'Piure de cartofi', 'Cartofi pai'
-            ],
-            'Salate' => [
-                'Salata orientala', 'Salata varza'
-            ],
-            'Deserturi' => [
-                'Ecler', 'Tiramisu'
-            ],
-            'Produse de panificatie' => [
-                'Chifla traditionala'
-            ],
-            'Bauturi' => [
-                'cafea espresso'
-            ],
-            'Sosuri' => [
-                'Smantana', 'Sos de usturoi'
-            ]
-        ];
-
-        foreach ($meniu as $categorie => $produse){
-            $cat = Category::create(['name' => $categorie]);
-
-            foreach ($produse as $produs){
-                FoodItem::create([
-                    'name' => $produs,
-                    'category_id' => $cat->id,
-                    'price' => rand(5, 30)
-                ]);
-            }
+        $path = database_path('data/meniu.csv');
+        if(!file_exists($path)){
+            $this->command->error("Fisierul meniu.csv nu a fost gasit!");
+            return;
         }
+
+        $file = fopen($path, 'r');
+
+        // prima linie citim
+        $header = fgetcsv($file);
+
+        while(($data = fgetcsv($file)) !== false) {
+            [$categorie, $nume, $calorii, $pret] = $data;
+
+            // cautam categoria
+            $cat = Category::firstOrCreate(['name' => $categorie]);
+
+            // adaugam produse
+            FoodItem::create([
+                'name' => $nume,
+                'price' => $pret,
+                'calories' => $calorii,
+                'category_id' => $cat->id,
+            ]);
+        }
+
+        fclose($file);
+
+        $this->command->info("Meniu a fost importat cu success din CSV!");
     }
+
 }
