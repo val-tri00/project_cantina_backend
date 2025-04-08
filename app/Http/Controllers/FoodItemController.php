@@ -12,14 +12,14 @@ class FoodItemController extends Controller
      */
     public function index()
     {
-        return FoodItem::with('category:id, name')->get()->map(function($item) {
+        return FoodItem::with('category:id,name')->get()->map(function($item) {
             return [
                 'id' => $item->id,
                 'name' => $item->name,
                 'calories' => $item->calories,
                 'price' => $item->price,
                 'category_id' => $item->category_id,
-                'category_name' => $item->category->name,
+                'category_name' => optional($item->category)->name,
             ];
         });
     }
@@ -33,7 +33,7 @@ class FoodItemController extends Controller
             'name' => 'required',
             'calories' => 'required|integer',
             'price' => 'required|numeric',
-            'category_id' => 'required|exists:calories,id',
+            'category_id' => 'required|exists:categories,id',
         ]);
         
             FoodItem::create($request->all());
