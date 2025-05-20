@@ -6,10 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class FoodItem extends Model
 {
-    protected $fillable = ['name', 'price', 'calories', 'category_id'];
+    protected $fillable = ['name', 'price', 'calories', 'category_id', 'img_path'];
 
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function getImageUrlAttribute(){
+        return $this->img_path
+            ? url('/images/' . basename($this->img_path))
+            : url('/images/default.png');
     }
 }

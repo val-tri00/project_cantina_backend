@@ -27,4 +27,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/food-items/{id}', [FoodItemController::class, 'destroy']);
 
     Route::get('/categories', [FoodItemController::class, 'index']);
+
 });

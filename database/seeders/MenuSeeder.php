@@ -32,13 +32,20 @@ class MenuSeeder extends Seeder
             // cautam categoria
             $cat = Category::firstOrCreate(['name' => $categorie]);
 
+            // cream slug pt img
+            $slug = strtolower(str_replace(' ', '_', $nume));
+            $imgPath = "produse/{$slug}.png";
+
             // adaugam produse
-            FoodItem::create([
-                'name' => $nume,
-                'price' => $pret,
-                'calories' => $calorii,
-                'category_id' => $cat->id,
-            ]);
+            FoodItem::updateOrCreate(
+                ['name' => $nume],
+                [
+                    'price' => $pret,
+                    'calories' => $calorii,
+                    'category_id' => $cat->id,
+                    'img_path' => $imgPath,
+                ]
+            );
         }
 
         fclose($file);

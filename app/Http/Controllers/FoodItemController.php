@@ -20,6 +20,7 @@ class FoodItemController extends Controller
                 'price' => $item->price,
                 'category_id' => $item->category_id,
                 'category_name' => optional($item->category)->name,
+                'image_url' => $item->image_url,
             ];
         });
     }
