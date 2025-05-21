@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Cache;
 use App\Models\FoodItem;
 use Illuminate\Http\Request;
 
@@ -12,17 +13,29 @@ class FoodItemController extends Controller
      */
     public function index()
     {
-        return FoodItem::with('category:id,name')->get()->map(function($item) {
-            return [
-                'id' => $item->id,
-                'name' => $item->name,
-                'calories' => $item->calories,
-                'price' => $item->price,
-                'category_id' => $item->category_id,
-                'category_name' => optional($item->category)->name,
-                'image_url' => $item->image_url,
-            ];
+        $cacheKey = 'food_items_all';
+
+        $fullKey = config('cache.prefix') . $cacheKey;
+        \Log::info('🔍 Salvare cache sub cheia: ' . $fullKey);
+
+        $data = Cache::remember($cacheKey, now()->addMinutes(10), function () {
+            return FoodItem::with('category:id,name')->get()->map(function($item) {
+                return [
+                    'id' => $item->id,
+                    'name' => $item->name,
+                    'calories' => $item->calories,
+                    'price' => $item->price,
+                    'category_id' => $item->category_id,
+                    'category_name' => optional($item->category)->name,
+                    'image_url' => $item->image_url,
+                ];
+            });
         });
+
+        $value = \Cache::get($cacheKey);
+        \Log::info('🧾 Cache brut: ' . json_encode($value));
+
+        return response()->json($data);
     }
 
     /**
@@ -38,6 +51,8 @@ class FoodItemController extends Controller
         ]);
         
             FoodItem::create($request->all());
+
+            Cache::forget('food_items_all');
 
             return response()->json(['message' => 'Produs adaugat cu success']);
     }
@@ -55,7 +70,7 @@ class FoodItemController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $item = FoodItem::findOrFaile($id);
+        $item = FoodItem::findOrFail($id);
 
         $request->validate([
             'name' => 'required',
@@ -65,6 +80,8 @@ class FoodItemController extends Controller
         ]);
 
         $item->update($request->all());
+
+        Cache::forget('food_items_all');
 
         return response()->json(['message' => 'Produs actualizat cu success']);
     }
@@ -76,6 +93,8 @@ class FoodItemController extends Controller
     {
         $item = FoodItem::findOrFail($id);
         $item->delete();
+
+        Cache::forget('food_items_all');
 
         return response()->json(['message' => 'Produs sters']);
     }

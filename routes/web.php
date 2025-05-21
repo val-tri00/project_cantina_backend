@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Symfony\Component\Translation\Catalogue\AbstractOperation;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 
 Route::get('/', function () {
@@ -24,4 +27,11 @@ Route::get('/images/{filename}', function($filename, Request $request){
 
     // redirectam browser spre img din r2 (link privat semnat)
     return redirect()->to($url);
+});
+
+
+
+//test
+Route::get('/redis-ping', function () {
+    return Redis::connection()->ping(); // trebuie să răspundă cu 'PONG'
 });
