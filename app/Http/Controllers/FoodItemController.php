@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Cache;
 use App\Models\FoodItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FoodItemController extends Controller
 {
@@ -20,6 +21,11 @@ class FoodItemController extends Controller
 
         $data = Cache::remember($cacheKey, now()->addMinutes(10), function () {
             return FoodItem::with('category:id,name')->get()->map(function($item) {
+                $presignedUrl = Storage::disk('s3')->temporaryUrl(
+                    $item->img_path,
+                    now()->addMinutes(20)
+                );
+
                 return [
                     'id' => $item->id,
                     'name' => $item->name,
@@ -27,7 +33,7 @@ class FoodItemController extends Controller
                     'price' => $item->price,
                     'category_id' => $item->category_id,
                     'category_name' => optional($item->category)->name,
-                    'image_url' => $item->image_url,
+                    'image_url' => $presignedUrl,
                 ];
             });
         });
