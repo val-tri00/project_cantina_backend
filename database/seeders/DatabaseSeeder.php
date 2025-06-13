@@ -16,5 +16,10 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         $this->call(MenuSeeder::class);
+
+        $this->call([
+            PaymentMethodSeeder::class,
+            OrderStatusSeeder::class,
+        ]);
     }
 }
