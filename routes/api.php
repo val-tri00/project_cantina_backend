@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FoodItemController;
 use App\Http\Controllers\MeniuController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
 
 
 Route::get('/test', function () {
@@ -29,3 +30,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/categories', [FoodItemController::class, 'index']);
 
 });
+
+
+Route::middleware('auth:sanctum')->group(function() {
+    Route::post('/orders', [OrderController::class, 'store']); //plasare comanda noua
+    Route::get('/orders', [OrderController::class, 'index']); // comenzile userului
+    Route::get('/orders/{id}', [OrderController::class, 'show']); //vezi detalii la comanda
+
+    // rute pt update status
+});
+
+
