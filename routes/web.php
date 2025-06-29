@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
@@ -29,6 +30,11 @@ Route::get('/images/{filename}', function($filename, Request $request){
     return redirect()->to($url);
 });
 
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/admin/orders', [OrderController::class, 'adminOrders']);
+    Route::put('/admin/orders/{id}/status', [OrderController::class, 'updateStatus']);
+});
 
 
 //test

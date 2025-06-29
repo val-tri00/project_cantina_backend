@@ -16,7 +16,20 @@ class Order extends Model
         'created_at'
     ];
 
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
     public function items(){
         return $this->hasMany(OrderItem::class);
     }
+
+    public function paymentMethod() {
+        return $this->belongsTo(PaymentMethod::class);
+    }
+
+    public function status() {
+        return $this->belongsTo(OrderStatus::class, 'order_status_id');
+    }
 }
+

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class FoodItem extends Model
 {
     protected $fillable = ['name', 'price', 'calories', 'category_id', 'img_path'];
+    protected $appends = ['image_url'];
 
     public function category()
     {

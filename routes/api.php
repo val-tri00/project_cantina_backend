@@ -33,11 +33,17 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 Route::middleware('auth:sanctum')->group(function() {
-    Route::post('/orders', [OrderController::class, 'store']); //plasare comanda noua
-    Route::get('/orders', [OrderController::class, 'index']); // comenzile userului
-    Route::get('/orders/{id}', [OrderController::class, 'show']); //vezi detalii la comanda
+    Route::post('/orders', [OrderController::class, 'store']); 
+    Route::get('/orders', [OrderController::class, 'index']); 
+    Route::get('/orders/{id}', [OrderController::class, 'show']); 
 
     // rute pt update status
 });
 
 
+
+Route::middleware(['auth:sanctum'])->prefix('admin')->group(function () {
+    Route::get('/orders', [OrderController::class, 'adminOrders']);
+    Route::get('/stats', [OrderController::class, 'getAdminStats']);
+    Route::put('/orders/{order}/status', [OrderController::class, 'updateStatus']);
+});
