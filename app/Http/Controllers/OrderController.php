@@ -132,14 +132,33 @@ class OrderController extends Controller
         ]);
     }
 
-    public function adminOrders() {
+    
+    public function adminOrders(Request $request) {
+        $statusFilter = $request->query('status');
+    
         $orders = Order::with(['user', 'items.food', 'paymentMethod', 'status'])
+            ->when($statusFilter, function ($query) use ($statusFilter) {
+                $query->whereHas('status', fn($q) => $q->where('status', $statusFilter));
+            })
             ->orderByDesc('created_at')
-            ->take(20)
+            ->take(50)
             ->get();
     
         return response()->json($orders);
-    }    
+    }
+    
+
+    
+    
+    public function pendingOrders()
+    {
+        $orders = Order::with(['user', 'items.food', 'paymentMethod', 'status'])
+            ->whereHas('status', fn($q) => $q->where('status', 'pending'))
+            ->orderByDesc('created_at')
+            ->get();
+    
+        return response()->json($orders);
+    }
     
 }
 

@@ -46,4 +46,5 @@ Route::middleware(['auth:sanctum'])->prefix('admin')->group(function () {
     Route::get('/orders', [OrderController::class, 'adminOrders']);
     Route::get('/stats', [OrderController::class, 'getAdminStats']);
     Route::put('/orders/{order}/status', [OrderController::class, 'updateStatus']);
+    Route::get('/orders/pending', [OrderController::class, 'pendingOrders']);
 });
