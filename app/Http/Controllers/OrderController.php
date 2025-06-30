@@ -19,13 +19,15 @@ class OrderController extends Controller
             return response()->json(['error' => 'Unauthorized in controller'], 401);
         }    
 
+        $today = now()->format('Y-m-d');
         $validated = $request->validate([
             'items' => 'required|array|min:1',
             'items.*.food_id' => 'required|integer|exists:food_items,id',
             'items.*.qty' => 'required|integer|min:1',
             'payment_method_id' => 'required|exists:payment_method,id',
-            'pickup_time' => 'nullable|date|after:now',
+            'pickup_time' => 'required|date|after_or_equal:' . $today . ' 11:30|before_or_equal:' . $today . ' 15:00',
         ]);
+
 
         return DB::transaction(function() use ($validated, $request) {
             $total = 0;
@@ -132,7 +134,7 @@ class OrderController extends Controller
         ]);
     }
 
-    
+
     public function adminOrders(Request $request) {
         $statusFilter = $request->query('status');
     
