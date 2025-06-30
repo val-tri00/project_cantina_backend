@@ -5,6 +5,7 @@ use App\Http\Controllers\FoodItemController;
 use App\Http\Controllers\MeniuController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\admin\UserController;
 
 
 Route::get('/test', function () {
@@ -46,4 +47,10 @@ Route::middleware(['auth:sanctum'])->prefix('admin')->group(function () {
     Route::get('/stats', [OrderController::class, 'getAdminStats']);
     Route::put('/orders/{order}/status', [OrderController::class, 'updateStatus']);
     Route::get('/orders/pending', [OrderController::class, 'pendingOrders']);
+    
+    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/users/{id}', [UserController::class, 'show']);
+    Route::post('/users', [UserController::class, 'store']);
+    Route::put('/users/{id}', [UserController::class, 'update']);
+    Route::delete('/users/{id}', [UserController::class, 'destroy']);
 });
