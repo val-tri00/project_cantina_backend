@@ -59,7 +59,7 @@ class OrderController extends Controller
 
 
     public function index(Request $request) {
-        $orders = Order::with('items.food')
+        $orders = Order::with('items.food', 'paymentMethod', 'status')
             ->where('user_id', $request->user()->id)
             ->orderByDesc('created_at')
             ->get();
