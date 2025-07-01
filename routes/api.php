@@ -6,6 +6,7 @@ use App\Http\Controllers\MeniuController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\Admin\FoodItemController as AdminFoodItemController;
 
 
 Route::get('/test', function () {
@@ -53,4 +54,9 @@ Route::middleware(['auth:sanctum'])->prefix('admin')->group(function () {
     Route::post('/users', [UserController::class, 'store']);
     Route::put('/users/{id}', [UserController::class, 'update']);
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
+
+    Route::get('/produse', [AdminFoodItemController::class, 'index']);
+    Route::post('/produse', [AdminFoodItemController::class, 'store']);
+    Route::put('/produse/{id}', [AdminFoodItemController::class, 'update']);
+    Route::delete('/produse/{id}', [AdminFoodItemController::class, 'destroy']);
 });
